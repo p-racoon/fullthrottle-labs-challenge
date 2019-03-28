@@ -5,7 +5,7 @@ export default class RangeSliderForm extends Component {
   render() {
     return (
       <div className="">
-        <div className={this.props.isLoading?"bg-secondary":"bg-light "}>
+        <div className={this.props.isLoading ? "bg-secondary" : "bg-light "}>
           <div className="container pt-4 pb-3">
             <div className="row pb-3">
               <div className="col-md-6 col-sm-12 ">
@@ -78,7 +78,15 @@ export default class RangeSliderForm extends Component {
             <div className="row mt-3">
               <div className="col"></div>
               <div className="col">
-                <button className={this.props.isLoading ? "btn btn-block mx-auto disabled btn-secondary" : "col btn btn-block mx-auto btn-outline-success"}
+                <button
+                  disabled={this.props.isLoading ||
+                    this.props.rs_value_months < 6 || this.props.rs_value_months > 24 ||
+                    this.props.rs_value_amount < 500 || this.props.rs_value_amount > 5000
+                    ? true : false}
+                  className={
+                    this.props.isLoading ||
+                      this.props.rs_value_months < 6 || this.props.rs_value_months > 24 ||
+                      this.props.rs_value_amount < 500 || this.props.rs_value_amount > 5000 ? "btn btn-block mx-auto disabled btn-secondary" : "col btn btn-block mx-auto btn-outline-success"}
                   onClick={this.props.handleOnSubmit}>Submit</button>
                 <small id="amountHelp" className="form-text text-muted">click on values to edit them</small>
               </div>
